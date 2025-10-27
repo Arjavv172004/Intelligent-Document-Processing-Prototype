@@ -1,0 +1,609 @@
+/* Dashboard Specific Styles */
+
+/* Dashboard Header */
+.dashboard-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 2rem 0;
+    margin-top: 70px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.header-text p {
+    font-size: 1.125rem;
+    opacity: 0.9;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.refresh-btn,
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.refresh-btn:hover,
+.export-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Metrics Section */
+.metrics-section {
+    padding: 3rem 0;
+    background: var(--surface);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.metric-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.metric-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.metric-card:nth-child(1) .metric-icon {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+}
+
+.metric-card:nth-child(2) .metric-icon {
+    background: linear-gradient(45deg, var(--success-color), #34d399);
+}
+
+.metric-card:nth-child(3) .metric-icon {
+    background: linear-gradient(45deg, var(--warning-color), #fbbf24);
+}
+
+.metric-card:nth-child(4) .metric-icon {
+    background: linear-gradient(45deg, var(--error-color), #f87171);
+}
+
+.metric-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.metric-content p {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.metric-change {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.metric-change.positive {
+    color: var(--success-color);
+}
+
+.metric-change.negative {
+    color: var(--error-color);
+}
+
+/* Charts Section */
+.charts-section {
+    padding: 3rem 0;
+    background: white;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.chart-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.chart-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.chart-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chart-btn.active,
+.chart-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.chart-content {
+    padding: 1.5rem;
+    height: 400px;
+}
+
+/* Impact Section */
+.impact-section {
+    padding: 3rem 0;
+    background: var(--surface);
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.impact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.impact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.impact-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.impact-card:nth-child(1) .impact-icon {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+}
+
+.impact-card:nth-child(2) .impact-icon {
+    background: linear-gradient(45deg, var(--warning-color), #fbbf24);
+}
+
+.impact-card:nth-child(3) .impact-icon {
+    background: linear-gradient(45deg, var(--success-color), #34d399);
+}
+
+.impact-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.impact-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.impact-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.impact-metric.highlight {
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.metric-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.metric-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Activity Section */
+.activity-section {
+    padding: 3rem 0;
+    background: white;
+}
+
+.activity-table-container {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.activity-table th,
+.activity-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.activity-table th {
+    background: var(--surface);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.activity-table td {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.activity-table tr:last-child td {
+    border-bottom: none;
+}
+
+.activity-table tr:hover {
+    background: var(--surface);
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.status-badge.processing {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-color);
+}
+
+.status-badge.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+}
+
+.action-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.action-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.no-data {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ROI Section */
+.roi-section {
+    padding: 3rem 0;
+    background: var(--surface);
+}
+
+.roi-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.roi-header {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    text-align: center;
+}
+
+.roi-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.roi-header p {
+    opacity: 0.9;
+}
+
+.roi-content {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.roi-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.input-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.roi-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.roi-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+.roi-metric.highlight {
+    background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.roi-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.roi-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .roi-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .header-actions {
+        justify-content: center;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .activity-table {
+        font-size: 0.75rem;
+    }
+    
+    .activity-table th,
+    .activity-table td {
+        padding: 0.5rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Loading States */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Chart Animations */
+.chart-content {
+    position: relative;
+}
+
+.chart-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--surface);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.chart-content.loading::before {
+    opacity: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}

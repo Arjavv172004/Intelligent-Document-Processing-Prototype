@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Innovo IDP</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Innovo IDP</span>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/#features" class="nav-link">Features</a>
+                <a href="/#demo" class="nav-link">Demo</a>
+                <a href="/dashboard" class="nav-link active">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Analytics Dashboard</h1>
+                    <p>Monitor your document processing performance and business impact</p>
+                </div>
+                <div class="header-actions">
+                    <button class="refresh-btn" onclick="refreshDashboard()">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                    <button class="export-btn" onclick="exportAnalytics()">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="metrics-section">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="totalDocuments">0</h3>
+                        <p>Documents Processed</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +12% this week
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="avgProcessingTime">0s</h3>
+                        <p>Avg Processing Time</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-down"></i>
+                            -75% vs manual
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="efficiencyGain">0%</h3>
+                        <p>Efficiency Gain</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +5% this month
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 id="timeSaved">0h</h3>
+                        <p>Time Saved</p>
+                        <span class="metric-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +200% ROI
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="container">
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Document Types Distribution</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-chart="pie">Pie</button>
+                            <button class="chart-btn" data-chart="bar">Bar</button>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <div id="documentTypesChart"></div>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Processing Time Trends</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-chart="line">Line</button>
+                            <button class="chart-btn" data-chart="area">Area</button>
+                        </div>
+                    </div>
+                    <div class="chart-content">
+                        <div id="processingTimeChart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Impact Section -->
+    <div class="impact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Business Impact Analysis</h2>
+                <p>Quantifying the value of automation in your organization</p>
+            </div>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Time Savings</h3>
+                        <div class="impact-metrics">
+                            <div class="impact-metric">
+                                <span class="metric-label">Manual Processing:</span>
+                                <span class="metric-value">5 min/doc</span>
+                            </div>
+                            <div class="impact-metric">
+                                <span class="metric-label">Automated Processing:</span>
+                                <span class="metric-value">20 sec/doc</span>
+                            </div>
+                            <div class="impact-metric highlight">
+                                <span class="metric-label">Time Saved:</span>
+                                <span class="metric-value" id="timeSavedPerDoc">4.67 min/doc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Error Reduction</h3>
+                        <div class="impact-metrics">
+                            <div class="impact-metric">
+                                <span class="metric-label">Manual Error Rate:</span>
+                                <span class="metric-value">15%</span>
+                            </div>
+                            <div class="impact-metric">
+                                <span class="metric-label">Automated Error Rate:</span>
+                                <span class="metric-value">2%</span>
+                            </div>
+                            <div class="impact-metric highlight">
+                                <span class="metric-label">Error Reduction:</span>
+                                <span class="metric-value">85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>Monthly Impact</h3>
+                        <div class="impact-metrics">
+                            <div class="impact-metric">
+                                <span class="metric-label">Documents/Month:</span>
+                                <span class="metric-value" id="monthlyDocs">0</span>
+                            </div>
+                            <div class="impact-metric">
+                                <span class="metric-label">Hours Saved:</span>
+                                <span class="metric-value" id="monthlyHours">0h</span>
+                            </div>
+                            <div class="impact-metric highlight">
+                                <span class="metric-label">Cost Savings:</span>
+                                <span class="metric-value" id="costSavings">$0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="activity-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Processing Activity</h2>
+                <p>Latest document processing events and results</p>
+            </div>
+            
+            <div class="activity-table-container">
+                <table class="activity-table" id="activityTable">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Document Type</th>
+                            <th>File Name</th>
+                            <th>Processing Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityTableBody">
+                        <tr class="no-data">
+                            <td colspan="6">No processing activity yet. Upload a document to get started!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROI Calculator -->
+    <div class="roi-section">
+        <div class="container">
+            <div class="roi-card">
+                <div class="roi-header">
+                    <h2>ROI Calculator</h2>
+                    <p>Calculate your potential return on investment</p>
+                </div>
+                <div class="roi-content">
+                    <div class="roi-inputs">
+                        <div class="input-group">
+                            <label>Documents per month:</label>
+                            <input type="number" id="monthlyDocuments" value="100" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Cost per hour (manual):</label>
+                            <input type="number" id="hourlyCost" value="25" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label>Processing time (manual):</label>
+                            <input type="number" id="manualTime" value="5" min="0.1" step="0.1">
+                        </div>
+                    </div>
+                    <div class="roi-results">
+                        <div class="roi-metric">
+                            <span class="roi-label">Monthly Savings:</span>
+                            <span class="roi-value" id="monthlySavings">$0</span>
+                        </div>
+                        <div class="roi-metric">
+                            <span class="roi-label">Annual Savings:</span>
+                            <span class="roi-value" id="annualSavings">$0</span>
+                        </div>
+                        <div class="roi-metric highlight">
+                            <span class="roi-label">ROI:</span>
+                            <span class="roi-value" id="roiPercentage">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Innovo IDP</span>
+                    </div>
+                    <p>Intelligent Document Processing powered by AI and automation technology.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Product</h4>
+                        <a href="/#features">Features</a>
+                        <a href="/#demo">Demo</a>
+                        <a href="/dashboard">Analytics</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <a href="#">About Innovo</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Careers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovo Technology Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

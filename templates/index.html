@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Document Processor - Innovo Technology Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>Innovo IDP</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Intelligent Document Processing</span>
+                    <br>Powered by AI & Automation
+                </h1>
+                <p class="hero-subtitle">
+                    Transform your business with our cutting-edge document processing solution. 
+                    Extract, analyze, and automate with precision - inspired by Innovo Technology Solutions.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">Efficiency Gain</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Error Reduction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4min</span>
+                        <span class="stat-label">Time Saved/Doc</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="scrollToDemo()">
+                    <i class="fas fa-play"></i>
+                    Start Processing
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="document-preview">
+                    <div class="document-card">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Invoice</span>
+                    </div>
+                    <div class="arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="data-card">
+                        <i class="fas fa-database"></i>
+                        <span>Structured Data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Our Solution?</h2>
+                <p>Built with Innovo's automation philosophy: "Automation as a Culture"</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Advanced OCR</h3>
+                    <p>State-of-the-art optical character recognition with 99%+ accuracy for various document types.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Smart Extraction</h3>
+                    <p>AI-powered data extraction using NLP and pattern recognition for structured output.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Comprehensive dashboard with processing metrics and business impact visualization.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>RPA Integration</h3>
+                    <p>Seamless integration with UiPath and other automation platforms for end-to-end workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>Try It Now</h2>
+                <p>Upload a document and see the magic happen in real-time</p>
+            </div>
+            
+            <div class="demo-container">
+                <!-- Upload Area -->
+                <div class="upload-section">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drop your document here</h3>
+                            <p>Supports PDF, JPG, PNG files up to 16MB</p>
+                            <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                            <button class="upload-button" onclick="document.getElementById('fileInput').click()">
+                                Choose File
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Section -->
+                <div class="processing-section" id="processingSection" style="display: none;">
+                    <div class="processing-card">
+                        <div class="processing-header">
+                            <h3>Processing Document</h3>
+                            <div class="processing-status">
+                                <div class="status-dot"></div>
+                                <span>In Progress</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="processing-steps">
+                            <div class="step active" id="step1">
+                                <i class="fas fa-upload"></i>
+                                <span>Uploading</span>
+                            </div>
+                            <div class="step" id="step2">
+                                <i class="fas fa-eye"></i>
+                                <span>OCR Processing</span>
+                            </div>
+                            <div class="step" id="step3">
+                                <i class="fas fa-brain"></i>
+                                <span>Data Extraction</span>
+                            </div>
+                            <div class="step" id="step4">
+                                <i class="fas fa-check"></i>
+                                <span>Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <div class="results-header">
+                        <h3>Extracted Data</h3>
+                        <div class="results-actions">
+                            <button class="action-btn export-btn" onclick="exportCSV()">
+                                <i class="fas fa-download"></i>
+                                Export CSV
+                            </button>
+                            <button class="action-btn automation-btn" onclick="sendToAutomation()">
+                                <i class="fas fa-robot"></i>
+                                Send to RPA
+                            </button>
+                        </div>
+                    </div>
+                    <div class="results-table-container">
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Extracted Value</th>
+                                    <th>Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Document Preview -->
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <div class="preview-header">
+                        <h3>Document Preview</h3>
+                        <button class="close-preview" onclick="closePreview()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="preview-content">
+                        <img id="previewImage" src="" alt="Document Preview">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <span>Innovo IDP</span>
+                    </div>
+                    <p>Intelligent Document Processing powered by AI and automation technology.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#demo">Demo</a>
+                        <a href="/dashboard">Analytics</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <a href="#">About Innovo</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Careers</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Innovo Technology Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Processing your document...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Success!</h3>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <p id="successMessage">Document processed successfully!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
